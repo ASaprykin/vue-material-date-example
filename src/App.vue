@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="block block-center">
+      <md-datepicker v-model="date" />
+      <div class="md-layout md-alignment-top-center">
+        <md-button @click="setNull">SET NULL</md-button>
+        <md-button @click="setDefault">SET DEFAULT</md-button>
+        <md-button @click="setCurrent">SET CURRENT</md-button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+const date = new Date;
 export default {
   name: 'app',
+  data() {
+    return {
+        defaultDate: date,
+        date: date,
+      };
+    },
   components: {
-    HelloWorld
+  },
+  methods: {
+    setNull() {
+      this.date = null;
+    },
+    setDefault() {
+      this.date = this.defaultDate;
+    },
+    setCurrent() {
+      this.date = new Date;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    display: flex;
+    justify-content: center;
+  }
+
+  .block-center {
+    width: 500px;
+  }
 </style>
